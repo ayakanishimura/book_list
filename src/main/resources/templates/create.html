@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+<head>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<div class="subTitle">
+		<i class="fas fa-book-open"></i>書籍の新規登録
+	</div>
+	<form class="createForm" method="post"
+		th:action="@{/book/create/complete}">
+
+		<table>
+			<tr>
+				<th>書籍ID:</th>
+				<td><input type="text" name="bookId" /></td>
+			</tr>
+			<tr>
+				<th>書籍名:</th>
+				<td><input type="text" name="bookName" /></td>
+
+			</tr>
+			<tr>
+				<th>著者 :</th>
+				<td><input type="text" name="author" /></td>
+			</tr>
+
+			<tr>
+				<th>発行日:</th>
+				<td><input type="text" name="publicationDate" /></td>
+			</tr>
+			<tr>
+				<th>在庫 :</th>
+				<td><input type="number" name="stock" /></td>
+			</tr>
+			<tr>
+				<th>ジャンル名:</th>
+				<td><select name="genreId">
+						<option th:each="genre: ${genres}" th:value="${genre.genreId}"
+							th:text="${genre.genreName}"></option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="登録する" /></td>
+			</tr>
+
+
+
+		</table>
+	</form>
+
+
+
+
+</body>
+</html>

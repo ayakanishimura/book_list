@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:fragment="layout(title,body)">
+<head>
+<meta charset="UTF-8" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<title th:replace="${title}">Insert title here</title>
+<link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{header :: layout-header}"></div>
+    <div id="container">
+		<div id="main" th:replace="${body}"></div>
+    </div>
+    <div th:replace="~{footer :: layout-footer}"></div>
+</body>
+</html>

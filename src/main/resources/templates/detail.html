@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+<head>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<div class="subTitle">書籍詳細</div>
+	<table>
+		<tr>
+			<td>書籍ID</td>
+			<td th:text="${book.bookId}"></td>
+		</tr>
+		<tr>
+			<td>書籍名</td>
+			<td th:text="${book.bookName}"></td>
+		</tr>
+		<tr>
+			<td>著者</td>
+			<td th:text="${book.author}"></td>
+		</tr>
+		<tr>
+			<td>発行日</td>
+			<td th:text="${#dates.format(book.publicationDate,'yyyy/MM/dd')}"></td>
+		</tr>
+		<tr>
+			<td>在庫</td>
+			<td th:text="${book.stock}"></td>
+		</tr>
+		<tr>
+			<td>ジャンル名</td>
+			<td th:text="${book.genre.genreName}"></td>
+		</tr>
+
+	</table>
+
+	<div class="editDelete">
+		<a th:href="@{/book/update/{bookId}(bookId=${book.bookId})}">編集</a> <a
+			th:href="@{/book/delete/input/}">削除</a>
+	</div>
+
+
+
+
+
+</body>
+</html>

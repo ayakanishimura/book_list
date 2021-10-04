@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+<head>
+<title></title>
+</head>
+<body>
+<div class="subTitle">書籍一覧画面</div>
+	<div class="boxContainer">
+
+		<form class="findLike" th:action="@{/book/findByBookNameLike/}" method="post">
+			書籍名: <input type="text" name="keyword" th:value="${keyword}" />
+			<input type="submit" value="検索" />
+		</form>
+
+
+		<form class="findGenre" th:action="@{/book/findByGenreName/}" method="post">
+			ジャンル名: <select name="genreId">
+				<option th:each="genre: ${genres}"
+					th:selected="${genre.genreId == genreId}"
+					th:value="${genre.genreId}" th:text="${genre.genreName}"></option>
+			</select> <input type="submit" value="検索" />
+		</form>
+
+	</div>
+
+
+	<div th:if="${books}">
+		<div class="message" th:if="${books.size() == 0}">
+			該当する書籍は存在しません。 <br>
+			<a th:href="@{/book/findAll/}">一覧表示に戻る</a>
+		</div>
+
+		<div th:if="${books.size() > 0}">
+			
+			<table>
+				<thead>
+					<tr>
+						<th>書籍ID</th>
+						<th>書籍名</th>
+						<th>著者</th>
+						<th>発行日</th>
+						<th>在庫</th>
+						<th>ジャンル名</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="book: ${books}">
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.bookName}"></td>
+						<td th:text="${book.author}"></td>
+						<td th:text="${#dates.format(book.publicationDate,'yyyy/MM/dd')}"></td>
+
+						<td th:text="${book.stock}"></td>
+						<td th:text="${book.genre.genreName}"></td>
+
+						<td><a
+							th:href="@{/book/getOne/{bookId}(bookId=${book.bookId})}">詳細</a></td>
+						<td><a
+							th:href="@{/book/update/{bookId}(bookId=${book.bookId})}">編集</a></td>
+						<td><a th:href="@{/book/delete/input/}">削除</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

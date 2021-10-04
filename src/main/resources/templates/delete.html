@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::title},~{::body/content()})}">
+<head>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+<div class="subTitle">書籍の削除</div>
+ <form method="post" th:action="@{/book/delete/complete}">
+ 書籍ID:<input type="text" name="bookId" />
+ <input type="submit" value="削除する" />
+ </form>
+
+
+
+
+
+</body>
+</html>
